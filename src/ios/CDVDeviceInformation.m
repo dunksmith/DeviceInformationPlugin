@@ -13,28 +13,22 @@
 
 - (void)get:(CDVInvokedUrlCommand*)command
 {
-    NSDictionary* deviceProperties = [self deviceProperties];
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:deviceProperties];
+    NSString* deviceProperties = [self deviceProperties];
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: deviceProperties];
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (NSDictionary*)deviceProperties
+- (NSString*)deviceProperties
 {
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [networkInfo subscriberCellularProvider];
 
-    NSMutableDictionary* devProps = [NSMutableDictionary dictionaryWithCapacity:1];
-
-    // Get sim country code
     NSString *scc = [carrier isoCountryCode];
-    if (scc != nil)
-        [devProps setObject:scc forKey:@"simCountry"];
-    else
-        [devProps setObject:@"" forKey:@"simCountry"];
+    
+    NSString *result = [NSString stringWithFormat:@"{\"simCountry\":\"%@\"}", scc ?: @""];
 
-    NSDictionary* devReturn = [NSDictionary dictionaryWithDictionary:devProps];
-    return devReturn;
+    return result;
 }
 
 @end
