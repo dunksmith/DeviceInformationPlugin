@@ -23,7 +23,7 @@
    
     <platform name="android">
         
-        <source-file src="src/com/vliesaputra/cordova/plugins/DeviceInformation.java" target-dir="src/com/vliesaputra/cordova/plugins" />		
+        <source-file src="src/android/DeviceInformation.java" target-dir="src/com/vliesaputra/cordova/plugins" />		
         
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="DeviceInformation">
@@ -36,6 +36,20 @@
             <uses-permission android:name="android.permission.GET_ACCOUNTS" />
         </config-file>
      </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="DeviceInformation">
+                <param name="ios-package" value="CDVDeviceInformation"/>
+            </feature>
+        </config-file>
+        
+        <framework src="CoreTelephony.framework" />
+
+        <header-file src="src/ios/CDVDeviceInformation.h" />
+        <source-file src="src/ios/CDVDeviceInformation.m" />
+    </platform>
 
 </plugin>
 
