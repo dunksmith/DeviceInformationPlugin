@@ -1,15 +1,17 @@
 # DeviceInformation plugin for Phonegap #
 
-This plugin allows you to retrieve most information about your Android devices that are available through Android's Telephony Manager and Account Manager classes from your PhoneGap application:
+This plugin allows you to retrieve most information about your Android/iOS* devices that are available through Android's Telephony Manager and Account Manager classes, or iOS's CTCarrier class, from your PhoneGap application:
 
 1. Your unique Device ID
 2. Phone Number (if it is stored in your SIM card)
 3. Country ISO of your phone network provider
 4. Name of your network provider
 5. Your SIM Card Serial number
-6. Country ISO of your SIM card
+6. Country ISO of your SIM card*
 7. Name of your SIM card mobile operator
 8. E-mail/Phone number used by apps listed in your Settings > Accounts & Sync list
+
+*(\*limited support on iOS - phone number retrieval not permitted by approval process)*
 
 ## Adding the Plugin to your project ##
 
@@ -18,15 +20,15 @@ Using this plugin requires [Android PhoneGap](https://github.com/apache/incubato
 If you have installed PhoneGap CLI, run the following code from the command line:
    <pre>phonegap local plugin add https://github.com/vliesaputra/DeviceInformationPlugin</pre>
 
-Otherwise,
+Otherwise, to install manually on Android:
 
-1. To install the plugin, copy the www/deviceinformation.js file to your project's www folder and include a reference to it in your html file after phonegap.js.
+1. Copy the www/deviceinformation.js file to your project's www folder and include a reference to it in your html file after phonegap.js.
    <pre>
     &lt;script type="text/javascript" charset="utf-8" src="phonegap.js"&gt;&lt;/script&gt;
     &lt;script type="text/javascript" charset="utf-8" src="deviceinformation.js"&gt;&lt;/script&gt;
    </pre>
 
-2. Create a directory within your project called "src/com/vliesaputra/cordova/plugins" and copy src/com/vliesaputra/cordova/plugins/DeviceInformation.java into it.
+2. Create a directory within your project called "src/com/vliesaputra/cordova/plugins" and copy src/android/DeviceInformation.java into it.
 
 3. In your res/xml/config.xml file add the following line:
    <pre>
